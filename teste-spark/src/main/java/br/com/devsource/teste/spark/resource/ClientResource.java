@@ -12,8 +12,11 @@ import spark.Spark;
  */
 public class ClientResource extends AbstractResource {
 
+  private static int COUNT = 0;
+
   public ClientResource(ClientRepository clientRepository) {
     Spark.get("/clients/json", (req, res) -> {
+      System.out.println(++COUNT);
       return dataToJson(clientRepository.all());
     });
     Spark.get("/clients", (req, res) -> {
